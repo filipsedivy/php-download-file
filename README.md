@@ -25,7 +25,3 @@ $downloadFile = new \FS\DownloadFile;
 $downloadFile->download($filePath, $fileName, $contentType);
 ```
 
-## Normal usage
-If you want the class to use commonly, it is necessary to rewrite the exception 
-<b>Nette\FileNotFoundException();</b>.
-
