@@ -22,6 +22,7 @@ $filePath = 'data/file.exe';
 $fileName = 'install.exe';
 $contentType = 'application/octet-stream';
 $downloadFile = new \FS\DownloadFile;
+$downloadFile->speed(10); // 10 kb/s
 $downloadFile->download($filePath, $fileName, $contentType);
 ```
 
