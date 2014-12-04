@@ -60,7 +60,25 @@ class DownloadFile extends Nette\Object{
         'css'       => 'text/css',
         'cml'       => 'chemical/x-cml',
         'html'      => 'text/html'
-    );
+    );    
+    
+    
+    /**
+     * The download speed in kb/s
+     */
+    private $speed = null;
+    
+    
+    /**
+     * Set the download speed
+     * 
+     * @param double $rate Download speed in kb/s
+     */
+    public function speed($rate){
+        if(is_numeric($rate)){
+            $this->speed = $rate;
+        }
+    }
     
     
     /**
@@ -73,7 +91,7 @@ class DownloadFile extends Nette\Object{
     public function download($file, $name = null, $contentType = null){
         if(file_exists($file)){
             $extension = pathinfo($file, PATHINFO_EXTENSION);
-            
+           
             if(is_null($name)){
                 $name = basename($file);
             }
@@ -85,7 +103,7 @@ class DownloadFile extends Nette\Object{
                     $contentType = 'application/octet-stream';
                 }
             }
-            
+             
             header('Content-Description: File Transfer');
             header('Content-Type: ' . $contentType);
             header('Content-Disposition: attachment; filename=' . $name);
@@ -96,11 +114,23 @@ class DownloadFile extends Nette\Object{
             header('Content-Length: ' . filesize($file));
             ob_clean();
             flush();
-            readfile($file);
+            
+            // Download speed
+            if(is_null($this->speed)){
+                readfile($file);
+            }else{
+                $file = fopen($file, 'r');
+                while(!feof($file)){
+                    print fread($file, round($this->speed * 1024));
+                    flush();
+                    sleep(1);
+                }
+                fclose($file);
+            }
+            
             exit;
         }else{
             throw new Nette\FileNotFoundException();
         }
     }
-    
 }
