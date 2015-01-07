@@ -1,12 +1,11 @@
 Exensions for file downloads
 
 ## What is needed
-[Nete Framework](http://nette.org/)
+Server when support PHP files
 
 
 ## How to install
-Moves the file to a folder anywhere you have set in RoboLoader.
-
+Copy DownloadFile.php to anywhere
 
 ## How to use
 
