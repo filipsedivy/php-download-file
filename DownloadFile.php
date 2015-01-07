@@ -4,14 +4,12 @@
  * Class for download file
  * 
  * @author Filip Šedivý <mail@filipsedivy.cz>
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 namespace FS;
 
-use Nette;
-
-class DownloadFile extends Nette\Object{
+class DownloadFile{
 
     /**
      * If you want to add a file, you can add it to the list 
@@ -130,7 +128,9 @@ class DownloadFile extends Nette\Object{
             
             exit;
         }else{
-            throw new Nette\FileNotFoundException();
+            throw new FileNotFound();
         }
     }
 }
+
+class FileNotFound extends \Exception{}
