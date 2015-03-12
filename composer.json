@@ -1,5 +1,5 @@
 {
-	"name": "filipsedivy/PHP-DownloadFile",
+	"name": "filipsedivy/php-download-file",
 	"description": "PHP class for download files",
 	"keywords": ["download", "class", "download files"],
 	"license": "MIT",
