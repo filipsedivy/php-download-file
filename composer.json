@@ -16,7 +16,11 @@
 		"issues": "https://github.com/filipsedivy/PHP-DownloadFile/issues"
 	},
 	"require": {
-		"php": ">=5.3",
-		"ext-curl": "*"
-	}
+		"php": ">=5.3"
+	},
+        "autoload": {
+            "files": [
+                "src/DownloadFile.php"
+            ]
+        }
 }
